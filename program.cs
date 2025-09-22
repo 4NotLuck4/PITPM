@@ -33,7 +33,52 @@ internal class Program
             Console.Write("Выберите опцию: ");
             string choice = Console.ReadLine();
 
-            // Обработка выбора...
+            if (!isAuthenticated)
+            {
+                switch (choice)
+                {
+                    case "1":
+                        isAuthenticated = Authorize();
+                        break;
+                    case "2":
+                        Register();
+                        break;
+                    case "3":
+                        exit = true;
+                        break;
+                    default:
+                        Console.WriteLine("Неверный выбор. Попробуйте снова.");
+                        break;
+                }
+            }
+            else
+            {
+                switch (choice)
+                {
+                    case "1":
+                        AddUser();
+                        break;
+                    case "2":
+                        RemoveUser();
+                        break;
+                    case "3":
+                        FindUser();
+                        break;
+                    case "4":
+                        DisplayUsers();
+                        break;
+                    case "5":
+                        isAuthenticated = false;
+                        Console.WriteLine("Вы вышли из учетной записи.");
+                        break;
+                    case "6":
+                        exit = true;
+                        break;
+                    default:
+                        Console.WriteLine("Неверный выбор. Попробуйте снова.");
+                        break;
+                }
+            }
         }
     }
 
